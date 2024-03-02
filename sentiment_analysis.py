@@ -19,9 +19,11 @@ import spacy
 import pandas as pd
 from textblob import TextBlob
 
-# Load a small-sized langauge model for efficient NLP functions
-# Change to 'en_core_web_md' for similarity comparison
-nlp = spacy.load('en_core_web_sm')
+# Load a small-sized langauge model for polarity analysis
+nlp_sm = spacy.load('en_core_web_sm')
+
+# Load a medium-sized langauge model for similarity analysis
+nlp_md = spacy.load('en_core_web_md')
 
 
 # Specify the file path for the Amazon product reviews CSV file
@@ -96,13 +98,17 @@ def filter_and_tokenize(text: str) -> str:
     Returns:
     - str: A string comprised of cleaned tokens.
     """
-    sentence = nlp(text)                         # Make text an nlp object
+    # Make text an nlp object using the small model
+    sentence = nlp_sm(text)
+
     tokens = [
         token.lemma_ for token in sentence       # Tokenize and lemmatize
         if not token.is_stop                     # Remove stop words
         if not token.is_punct or token.is_space  # Remove punct and whitespace
     ]
-    return ' '.join(tokens).lower()           # Join to str and make lowercase
+
+    # Join to str and make lowercase
+    return ' '.join(tokens).lower()
 
 # Find and display number of row indexes to ensure user choice is within bounds
 def print_max_index() -> print:
@@ -202,7 +208,7 @@ def get_polarity(display_string: str) -> print:
     )
 
 # Print similarity value of two reviews for assessment
-def compare_reviews(display_string: str) -> print:
+def get_similarity(display_string: str) -> print:
     """
     Locates review text, tokenizes and cleans text, calculates similarity
     value.
@@ -227,9 +233,9 @@ def compare_reviews(display_string: str) -> print:
     tokens_1 = filter_and_tokenize(text_1)
     tokens_2 = filter_and_tokenize(text_2)
 
-    # Convert to nlp objects
-    nlp_review_1 = nlp(tokens_1)
-    nlp_review_2 = nlp(tokens_2)
+    # Convert to nlp objects using the medium model
+    nlp_review_1 = nlp_md(tokens_1)
+    nlp_review_2 = nlp_md(tokens_2)
 
     # Calculate similarity value and assign description
     value = nlp_review_1.similarity(nlp_review_2)
@@ -278,7 +284,16 @@ def display_review_polarity():
     Returns:
     - None.
     """
-    get_polarity("Select an index for processing: ")
+    while True:
+        get_polarity(
+            f"Select an index up to {len(reviews_data)} "
+            "for polarity analysis: "
+        )
+        user_input = input(
+            "\nHit enter to continue or type 'stop' for main menu: "
+        )
+        if user_input.lower() == 'stop':
+            break
 
 # Menu screen option 2 - display string is controlled from here.
 def display_reviews_similarity():
@@ -289,12 +304,21 @@ def display_reviews_similarity():
     - None
 
     Calls:
-    - compare_reviews(): Finds, prepares text; calculates, returns similarity
+    - get_similarity(): Finds, prepares text; calculates, returns similarity
 
     Returns:
     - None
     """
-    compare_reviews("Select an index for comparison: ")
+    while True:
+        get_similarity(
+            f"Select an index up to {len(reviews_data)} "
+            "for similarity analysis: "
+        )
+        user_input = input(
+            "\nHit enter to continue or type 'stop' for main menu: "
+        )
+        if user_input.lower() == 'stop':
+            break
 
 # Main program loop
 def main():
