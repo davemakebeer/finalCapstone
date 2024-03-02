@@ -54,3 +54,7 @@ Additionally, download the spaCy English language models:
 ## Error Handling
 
 The script includes error handling to ensure valid inputs from the user, preventing issues related to choosing an index outside the bounds of the available reviews.
+
+## Images
+
+! [Display review polarity](https://github.com/davemakebeer/finalCapstone/blob/main/Screenshot_1.jpg)
