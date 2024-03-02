@@ -87,7 +87,7 @@ def find_review(display_string: str) -> str:
 # Tokenize sentences and clean the results
 def filter_and_tokenize(text: str) -> str:
     """
-    Converts string to an NLP object.
+    Converts string to an NLP object using the small model.
     Tokenizes, lemmatizes and filters text to produce a clean list of relevant
     words.
     Joins the list into a str for further NLP processing.
@@ -96,7 +96,7 @@ def filter_and_tokenize(text: str) -> str:
     - text (str): A string comprising review text to be processed.
 
     Returns:
-    - str: A string comprised of cleaned tokens.
+    - str: A string comprised of cleaned lemmas.
     """
     # Make text an nlp object using the small model
     sentence = nlp_sm(text)
@@ -216,11 +216,11 @@ def get_similarity(display_string: str) -> print:
 
     Parameters:
     - display_string (str): Prompts user to choose two reviews by index.
-    - similarity_description(): Assigns textual score to similarity value.
 
     Calls:
     - find_review(): Locates and returns user-chosen review.
     - filter_and_tokenize(): Tokenizes and cleans a given review text.
+    - similarity_description(): Assigns textual score to similarity value.
 
     Returns:
     - None.
@@ -274,6 +274,7 @@ def options_screen() -> print:
 def display_review_polarity():
     """
     Displays the polarity score of a selected review.
+    Function is repeated until user chooses to break.
 
     Parameters:
     - None
@@ -290,7 +291,8 @@ def display_review_polarity():
             "for polarity analysis: "
         )
         user_input = input(
-            "\nHit enter to continue or type 'stop' for main menu: "
+            "\nAnalysis complete. Hit enter to continue "
+            "or type 'stop' for main menu: "
         )
         if user_input.lower() == 'stop':
             break
@@ -299,6 +301,7 @@ def display_review_polarity():
 def display_reviews_similarity():
     """
     Displays the similarity value of two selected reviews.
+    Function is repeated until user chooses to break.
 
     Parameters:
     - None
@@ -315,7 +318,8 @@ def display_reviews_similarity():
             "for similarity analysis: "
         )
         user_input = input(
-            "\nHit enter to continue or type 'stop' for main menu: "
+            "\nAnalysis complete. Hit enter to continue "
+            "or type 'stop' for main menu: "
         )
         if user_input.lower() == 'stop':
             break
