@@ -58,3 +58,4 @@ The script includes error handling to ensure valid inputs from the user, prevent
 ## Images
 
 ![Display review polarity](https://github.com/davemakebeer/finalCapstone/blob/main/Screenshot_1.jpg)
+![Display similarity and exit](https://github.com/davemakebeer/finalCapstone/blob/main/Screenshot_2.jpg)
