@@ -9,11 +9,15 @@ This Python script performs sentiment analysis on Amazon product reviews using N
 
 Before running the script, ensure you have the required dependencies installed. You can install them using:
 
-> pip install spacy pandas textblob
+> pip install spacy  
+> pip install pandas  
+> pip install textblob
 
-Additionally, download the spaCy English language model:
+
+Additionally, download the spaCy English language models:
 
 > python -m spacy download en_core_web_sm
+> python -m spacy download en_core_web_md
 
 ## Usage
 
