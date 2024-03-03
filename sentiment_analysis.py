@@ -318,8 +318,8 @@ def main():
     - None.
 
     Calls:
-    - display_review_polarity():
-    - display_reviews_similarity():
+    - display_review_polarity(): Displays polarity score of a selected review.
+    - display_reviews_similarity(): Displays similarity value of two reviews.
 
     Returns:
     - None
