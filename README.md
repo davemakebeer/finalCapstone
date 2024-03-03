@@ -16,7 +16,7 @@ Before running the script, ensure you have the required dependencies installed. 
 
 Additionally, download the spaCy English language models:
 
-> python -m spacy download en_core_web_sm
+> python -m spacy download en_core_web_sm  
 > python -m spacy download en_core_web_md
 
 ## Usage
@@ -31,7 +31,7 @@ Additionally, download the spaCy English language models:
 > python sentiment_analysis.py
 
 
-3. Follow the on-screen prompts to choose between displaying the sentiment polarity of a single review or comparing the similarity of two reviews. If you issues with the en_core_web_sm model when running .similarity, you may wish to close the program, change the code from _sm to _md and run again. However, this may not be necessary.
+3. Follow the on-screen prompts to choose between displaying the sentiment polarity of a single review or comparing the similarity of two reviews.
 
 ## Features
 
@@ -42,9 +42,11 @@ Additionally, download the spaCy English language models:
 
 1. **Display Review Polarity:**
    - Select a review by index to view its sentiment polarity.
+   - This function repeats until user chooses to break.
 
 2. **Compare Similarity of Two Reviews:**
    - Choose two reviews by index to compare their sentiment similarity.
+   - This function repeats until user chooses to break.
 
 3. **Exit Program:**
    - Terminate the program.
@@ -52,3 +54,8 @@ Additionally, download the spaCy English language models:
 ## Error Handling
 
 The script includes error handling to ensure valid inputs from the user, preventing issues related to choosing an index outside the bounds of the available reviews.
+
+## Images
+
+![Display review polarity](https://github.com/davemakebeer/finalCapstone/blob/main/Screenshot_1.jpg)
+![Display similarity and exit](https://github.com/davemakebeer/finalCapstone/blob/main/Screenshot_2.jpg)
