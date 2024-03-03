@@ -26,14 +26,8 @@ nlp_sm = spacy.load('en_core_web_sm')
 nlp_md = spacy.load('en_core_web_md')
 
 
-# Specify the file path for the Amazon product reviews CSV file
-FILE_PATH = ("/Users/admin/Dropbox/DS23110011568/Data Science (Fundamentals)/"
-            "T21 - Capstone Project - NLP Applications/finalCapstone/"
-            "amazon_product_reviews.csv"
-        )
-
 # Read the .csv file and store into a Pandas DataFrame
-df = pd.read_csv(FILE_PATH, engine='python')
+df = pd.read_csv('amazon_product_reviews.csv')
 
 # Drop rows with missing values in the 'reviews.text' column
 clean_data = df.dropna(subset=['reviews.text'])
@@ -42,7 +36,6 @@ clean_data = df.dropna(subset=['reviews.text'])
 reviews_data = clean_data['reviews.text']
 
 
-# Error handling - ensure valid integer inputs
 def get_int(display_string: str) -> int:
     """
     Continues to ask the user for an int, until a valid int is entered
@@ -62,7 +55,6 @@ def get_int(display_string: str) -> int:
         except ValueError:
             print("<<< Please enter an integer >>>")
 
-# Retrieve review text from DataFrame
 def find_review(display_string: str) -> str:
     """
     Uses user-input index to retrieve and return review text from a list.
@@ -84,7 +76,6 @@ def find_review(display_string: str) -> str:
         else:                               # Ensure input is in bounds
             print(f"<<< Max index: {len(reviews_data)} >>>")
 
-# Tokenize sentences and clean the results
 def filter_and_tokenize(text: str) -> str:
     """
     Converts string to an NLP object using the small model.
@@ -110,14 +101,12 @@ def filter_and_tokenize(text: str) -> str:
     # Join to str and make lowercase
     return ' '.join(tokens).lower()
 
-# Find and display number of row indexes to ensure user choice is within bounds
 def print_max_index() -> print:
     """Prints the number of indexes in DataFrame"""
     print(
         f"There are {len(reviews_data)} reviews in the DataFrame."
     )
 
-# Assign textual description to polarity value
 def polarity_description(polarity_value: float) -> str:
     """
     Assigns a textual score to the polarity value.
@@ -146,7 +135,6 @@ def polarity_description(polarity_value: float) -> str:
         description = "Extremely negative"
     return description
 
-# Assign textual description to similarity value
 def similarity_description(similarity_value: float) -> str:
     """
     Assigns a textual score to the similarity value.
@@ -175,7 +163,6 @@ def similarity_description(similarity_value: float) -> str:
         description = "Extremely dissimilar"
     return description
 
-# Print polarity results for assessment
 def get_polarity(display_string: str) -> print:
     """
     Locates review text, tokenizes and cleans text, calculates polarity value.
@@ -207,7 +194,6 @@ def get_polarity(display_string: str) -> print:
         f"Description:\t{description}"
     )
 
-# Print similarity value of two reviews for assessment
 def get_similarity(display_string: str) -> print:
     """
     Locates review text, tokenizes and cleans text, calculates similarity
@@ -249,7 +235,6 @@ def get_similarity(display_string: str) -> print:
         f"Description:\t\t{description}"
     )
 
-# Print options screen
 def options_screen() -> print:
     """
     Displays main menu options to the user.
@@ -270,7 +255,6 @@ def options_screen() -> print:
     print("2. Compare Similarity of Two Reviews")
     print("3. Exit Program")
 
-# Menu screen option 1 - display string is controlled from here.
 def display_review_polarity():
     """
     Displays the polarity score of a selected review.
@@ -297,7 +281,6 @@ def display_review_polarity():
         if user_input.lower() == 'stop':
             break
 
-# Menu screen option 2 - display string is controlled from here.
 def display_reviews_similarity():
     """
     Displays the similarity value of two selected reviews.
@@ -324,7 +307,6 @@ def display_reviews_similarity():
         if user_input.lower() == 'stop':
             break
 
-# Main program loop
 def main():
     """
     Main program loop.
